@@ -1,13 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOURDEN — Strategic China Sourcing & Supply Chain Operations</title>
+    <title>Sourden | China Sourcing. Done.</title>
+    <meta name="description" content="Sourden helps businesses source products from China with supplier research, verification, purchasing, quality control and shipping. Sourcing Without the Barriers.">
     
+    <!-- Google Fonts: Manrope & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,986 +19,1182 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            dark: '#111315',
-                            surface: '#F6F5F1',
-                            card: '#FFFFFF',
-                            border: '#E7E5DF',
-                            muted: '#686A68',
-                            gold: '#B49A6C',
-                            goldHover: '#9E8456',
-                        }
+                        ink: '#111315',
+                        ivory: '#F6F5F1',
+                        stone: '#E7E5DF',
+                        secondaryText: '#686A68',
+                        brass: '#B49A6C',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
                         heading: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    maxWidth: {
+                        'container': '1280px',
                     }
                 }
             }
         }
     </script>
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
     <style>
         body {
+            font-family: 'Inter', sans-serif;
             background-color: #F6F5F1;
             color: #111315;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        h1, h2, h3, h4, h5, h6, .font-heading {
+        h1, h2, h3, h4, .font-heading {
             font-family: 'Manrope', sans-serif;
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        
+        /* Custom transitions and editorial details */
+        .editorial-border {
+            border-color: #E7E5DF;
         }
-        ::-webkit-scrollbar-track {
-            background: #F6F5F1;
+        
+        /* Hover transitions */
+        .hover-brass-line {
+            position: relative;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #CBD5E1;
-            border-radius: 4px;
+        .hover-brass-line::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #B49A6C;
+            transition: width 0.3s ease;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #B49A6C;
+        .hover-brass-line:hover::after {
+            width: 100%;
         }
-        .page-section {
-            display: none;
+
+        .img-editorial {
+            filter: grayscale(15%) contrast(102%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
         }
-        .page-section.active {
-            display: block;
+        .img-editorial:hover {
+            transform: scale(1.02);
+            filter: grayscale(0%) contrast(100%);
         }
-        .nav-link.active {
-            color: #B49A6C;
-            font-weight: 600;
+
+        /* Modal backdrop blur */
+        .modal-blur {
+            backdrop-filter: blur(8px);
         }
-        .tab-btn.active {
-            border-color: #B49A6C;
-            color: #111315;
-            background-color: #FFFFFF;
+
+        /* Prevent scrollbar jitter */
+        html {
+            margin-right: calc(100vw - 100%);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
-<body class="bg-brand-surface text-brand-dark antialiased flex flex-col min-h-screen">
+<body class="bg-ivory text-ink antialiased selection:bg-brass selection:text-white pb-16 md:pb-0">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-brand-dark text-white text-xs py-2 px-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="text-gray-300">Direct Sourcing Infrastructure & Operations Hub — Shenzhen & Ningbo</span>
-            </div>
-            <div class="hidden md:flex items-center gap-6 text-gray-300">
-                <a href="mailto:service@sourden.com" class="hover:text-brand-gold transition-colors flex items-center gap-1.5">
-                    <i data-lucide="mail" class="w-3.5 h-3.5"></i> service@sourden.com
-                </a>
-                <a href="https://wa.me/8619861639802" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors flex items-center gap-1.5">
-                    <i data-lucide="phone" class="w-3.5 h-3.5"></i> +86 19861639802
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-40 bg-brand-surface/90 backdrop-blur-md border-b border-brand-border transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-brand-dark text-brand-gold flex items-center justify-center font-heading font-extrabold text-xl tracking-wider rounded-md group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
-                    S
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-heading font-bold text-2xl tracking-wider leading-none text-brand-dark">SOURDEN</span>
-                    <span class="text-[10px] tracking-widest text-brand-muted uppercase font-medium">Supply Chain Partners</span>
-                </div>
+    <!-- 01 HEADER -->
+    <header class="sticky top-0 z-40 bg-ivory/95 backdrop-blur-md border-b border-stone h-[72px] md:h-[80px] transition-all">
+        <div class="max-w-container mx-auto px-5 md:px-8 h-full flex items-center justify-between">
+            <!-- Brand Wordmark -->
+            <a href="#" class="font-heading text-2xl md:text-3xl font-bold tracking-tight text-ink flex items-center gap-1">
+                SOURDEN
+                <span class="w-1.5 h-1.5 rounded-full bg-brass inline-block"></span>
             </a>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
-                <a href="#services" id="nav-services" onclick="navigateTo('services')" class="nav-link text-brand-dark hover:text-brand-gold transition-colors">Services</a>
-                <a href="#industries" id="nav-industries" onclick="navigateTo('industries')" class="nav-link text-brand-dark hover:text-brand-gold transition-colors">Industries</a>
-                <a href="#how-it-works" id="nav-how-it-works" onclick="navigateTo('how-it-works')" class="nav-link text-brand-dark hover:text-brand-gold transition-colors">How It Works</a>
-                <a href="#about" id="nav-about" onclick="navigateTo('about')" class="nav-link text-brand-dark hover:text-brand-gold transition-colors">About Us</a>
-                <a href="#insights" id="nav-insights" onclick="navigateTo('insights')" class="nav-link text-brand-dark hover:text-brand-gold transition-colors">Insights</a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-ink">
+                <a href="#services" class="hover:text-brass transition-colors py-1">Services</a>
+                <a href="#industries" class="hover:text-brass transition-colors py-1">Industries</a>
+                <a href="#how-it-works" class="hover:text-brass transition-colors py-1">How It Works</a>
+                <a href="#sourcing-barriers" class="hover:text-brass transition-colors py-1">About</a>
+                <a href="#insights" class="hover:text-brass transition-colors py-1">Insights</a>
             </nav>
 
-            <!-- Header Action Button -->
-            <div class="hidden sm:flex items-center gap-4">
-                <button onclick="openSourcingModal()" class="bg-brand-dark text-white hover:bg-brand-gold hover:text-brand-dark px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-sm flex items-center gap-2">
-                    <span>Submit Sourcing Request</span>
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <!-- CTA Button -->
+            <div class="hidden lg:flex items-center">
+                <button onclick="openRequestModal()" class="bg-ink hover:bg-neutral-800 text-white text-[14px] font-medium tracking-wide h-[48px] px-6 rounded-[3px] transition-all duration-200 flex items-center justify-center">
+                    Start a Sourcing Request
                 </button>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <div class="lg:hidden flex items-center">
-                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg text-brand-dark hover:bg-black/5">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
+            <!-- Mobile Hamburger Toggle -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-ink focus:outline-none" aria-label="Toggle Navigation">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
         </div>
 
-        <!-- Mobile Drawer Navigation -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-brand-surface border-b border-brand-border px-4 pt-2 pb-6 space-y-3">
-            <a href="#services" onclick="navigateTo('services'); toggleMobileMenu()" class="block py-2 text-base font-medium text-brand-dark hover:text-brand-gold">Services</a>
-            <a href="#industries" onclick="navigateTo('industries'); toggleMobileMenu()" class="block py-2 text-base font-medium text-brand-dark hover:text-brand-gold">Industries</a>
-            <a href="#how-it-works" onclick="navigateTo('how-it-works'); toggleMobileMenu()" class="block py-2 text-base font-medium text-brand-dark hover:text-brand-gold">How It Works</a>
-            <a href="#about" onclick="navigateTo('about'); toggleMobileMenu()" class="block py-2 text-base font-medium text-brand-dark hover:text-brand-gold">About Us</a>
-            <a href="#insights" onclick="navigateTo('insights'); toggleMobileMenu()" class="block py-2 text-base font-medium text-brand-dark hover:text-brand-gold">Insights</a>
-            <div class="pt-4 border-t border-brand-border flex flex-col gap-3">
-                <button onclick="openSourcingModal(); toggleMobileMenu()" class="w-full bg-brand-dark text-white py-3 rounded-lg text-sm font-semibold text-center">
-                    Submit Sourcing Request
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-ivory border-b border-stone px-6 py-8 space-y-6 animate-fadeIn">
+            <nav class="flex flex-col space-y-4 text-lg font-medium text-ink">
+                <a href="#services" onclick="toggleMobileMenu()" class="border-b border-stone/50 pb-3">Services</a>
+                <a href="#industries" onclick="toggleMobileMenu()" class="border-b border-stone/50 pb-3">Industries</a>
+                <a href="#how-it-works" onclick="toggleMobileMenu()" class="border-b border-stone/50 pb-3">How It Works</a>
+                <a href="#sourcing-barriers" onclick="toggleMobileMenu()" class="border-b border-stone/50 pb-3">About</a>
+                <a href="#insights" onclick="toggleMobileMenu()" class="border-b border-stone/50 pb-3">Insights</a>
+            </nav>
+            <div class="pt-2">
+                <button onclick="toggleMobileMenu(); openRequestModal();" class="w-full bg-ink text-white text-[15px] font-medium h-[52px] rounded-[3px] flex items-center justify-center">
+                    Start a Sourcing Request
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Body (Multi-page SPA simulation) -->
-    <main class="flex-grow">
-        
-        <!-- VIEW: HOME -->
-        <div id="view-home" class="page-section active">
-            <!-- Hero Section -->
-            <section class="relative py-16 lg:py-24 border-b border-brand-border">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid lg:grid-cols-12 gap-12 items-center">
-                        <div class="lg:col-span-7 space-y-6">
-                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-brand-border text-xs font-semibold uppercase tracking-wider text-brand-muted">
-                                <span class="w-2 h-2 rounded-full bg-brand-gold"></span> High-Integrity Procurement Partner
-                            </div>
-                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-brand-dark leading-[1.15]">
-                                Strategic China Sourcing with Full Operational Clarity.
-                            </h1>
-                            <p class="text-lg sm:text-xl text-brand-muted max-w-2xl font-normal leading-relaxed">
-                                SOURDEN acts as your dedicated boots-on-the-ground procurement team in China. We eliminate trading markups, verify factories, audit quality, and safeguard your supply chain.
-                            </p>
-                            <div class="pt-4 flex flex-col sm:flex-row gap-4">
-                                <button onclick="openSourcingModal()" class="bg-brand-dark text-white hover:bg-brand-gold hover:text-brand-dark px-8 py-4 rounded-xl font-semibold text-base transition-all text-center flex items-center justify-center gap-2 shadow-lg">
-                                    <span>Start Sourcing Request</span>
-                                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                                </button>
-                                <a href="https://wa.me/8619861639802" target="_blank" rel="noopener noreferrer" class="bg-white border border-brand-border hover:border-brand-gold text-brand-dark px-8 py-4 rounded-xl font-semibold text-base transition-all text-center flex items-center justify-center gap-2 shadow-sm">
-                                    <i data-lucide="message-square" class="w-5 h-5 text-emerald-600"></i>
-                                    <span>WhatsApp Direct</span>
-                                </a>
-                            </div>
-                            <!-- Core Value Badges -->
-                            <div class="pt-8 border-t border-brand-border/60 grid grid-cols-3 gap-4">
-                                <div>
-                                    <div class="text-2xl font-bold font-heading text-brand-dark">100%</div>
-                                    <div class="text-xs text-brand-muted">Transparent Factory Pricing</div>
-                                </div>
-                                <div>
-                                    <div class="text-2xl font-bold font-heading text-brand-dark">Zero</div>
-                                    <div class="text-xs text-brand-muted">Kickbacks or Secret Commissions</div>
-                                </div>
-                                <div>
-                                    <div class="text-2xl font-bold font-heading text-brand-dark">Direct</div>
-                                    <div class="text-xs text-brand-muted">On-Site Quality Auditing</div>
-                                </div>
-                            </div>
+    <main>
+        <!-- 02 HERO SECTION -->
+        <section class="bg-ivory py-12 md:py-20 lg:py-24 border-b border-stone overflow-hidden">
+            <div class="max-w-container mx-auto px-5 md:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    
+                    <!-- Hero Content (Left Column) -->
+                    <div class="lg:col-span-6 space-y-6 md:space-y-8">
+                        <!-- Eyebrow -->
+                        <div class="inline-block">
+                            <span class="text-[12px] md:text-[13px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                                CHINA SOURCING. DONE.
+                            </span>
                         </div>
 
-                        <!-- Hero Graphic / Feature Card -->
-                        <div class="lg:col-span-5">
-                            <div class="bg-white p-6 sm:p-8 rounded-2xl border border-brand-border shadow-md space-y-6">
-                                <div class="flex justify-between items-start border-b border-brand-border pb-4">
-                                    <div>
-                                        <div class="text-xs font-semibold text-brand-muted uppercase tracking-wider">Operational Overview</div>
-                                        <div class="text-lg font-bold font-heading text-brand-dark">Your China Sourcing Hub</div>
-                                    </div>
-                                    <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-medium">Active Operations</span>
-                                </div>
+                        <!-- Main Heading with Clean Line Breaks -->
+                        <h1 class="text-[38px] sm:text-[50px] md:text-[58px] lg:text-[62px] font-bold text-ink leading-[1.02] tracking-tight font-heading">
+                            Find the right suppliers.<br class="hidden sm:inline"/>
+                            Manage the process.<br class="hidden sm:inline"/>
+                            Get your products moving.
+                        </h1>
 
-                                <div class="space-y-4">
-                                    <div class="flex items-start gap-3">
-                                        <div class="p-2 bg-brand-surface rounded-lg text-brand-gold">
-                                            <i data-lucide="shield-check" class="w-5 h-5"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="text-sm font-bold text-brand-dark">Factory Vetting & Audit</h4>
-                                            <p class="text-xs text-brand-muted">On-site verification of licenses, ISO compliance, and production capacity.</p>
-                                        </div>
-                                    </div>
+                        <!-- Description -->
+                        <p class="text-[16px] md:text-[18px] text-secondaryText leading-[1.6] max-w-[540px]">
+                            Sourden helps businesses source products from China with supplier research, quotation, purchasing, quality control and shipping — handled by one experienced partner.
+                        </p>
 
-                                    <div class="flex items-start gap-3">
-                                        <div class="p-2 bg-brand-surface rounded-lg text-brand-gold">
-                                            <i data-lucide="coins" class="w-5 h-5"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="text-sm font-bold text-brand-dark">Direct Cost Negotiation</h4>
-                                            <p class="text-xs text-brand-muted">Unmasked manufacturer pricing with itemized BOM (Bill of Materials).</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-start gap-3">
-                                        <div class="p-2 bg-brand-surface rounded-lg text-brand-gold">
-                                            <i data-lucide="clipboard-check" class="w-5 h-5"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="text-sm font-bold text-brand-dark">Strict AQL 2.5 Quality Inspection</h4>
-                                            <p class="text-xs text-brand-muted">Pre-production, inline, and pre-shipment rigorous batch checks.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="bg-brand-surface p-4 rounded-xl border border-brand-border text-xs text-brand-muted flex justify-between items-center">
-                                    <span>Ready to initiate factory audit?</span>
-                                    <button onclick="openSourcingModal()" class="text-brand-dark font-bold underline hover:text-brand-gold">Get Quote</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Core Services Overview -->
-            <section class="py-16 sm:py-20 border-b border-brand-border bg-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-3xl mx-auto mb-16">
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-heading">End-to-End Sourcing Capability</h2>
-                        <p class="mt-4 text-brand-muted text-base">We handle the complete product lifecycle from supplier discovery to final port loading, acting strictly as your extended team.</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="bg-brand-surface p-8 rounded-2xl border border-brand-border space-y-4 hover:border-brand-gold transition-colors">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-dark shadow-sm">
-                                <i data-lucide="search" class="w-6 h-6"></i>
-                            </div>
-                            <h3 class="text-xl font-bold font-heading text-brand-dark">Supplier Sourcing & Matching</h3>
-                            <p class="text-sm text-brand-muted leading-relaxed">Identification of top-tier OEM/ODM manufacturers through direct ground network, bypassing middlemen and trading markups.</p>
-                            <a href="#services" onclick="navigateTo('services')" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-gold pt-2">
-                                Learn More <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
-                            </a>
-                        </div>
-
-                        <div class="bg-brand-surface p-8 rounded-2xl border border-brand-border space-y-4 hover:border-brand-gold transition-colors">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-dark shadow-sm">
-                                <i data-lucide="check-square" class="w-6 h-6"></i>
-                            </div>
-                            <h3 class="text-xl font-bold font-heading text-brand-dark">Quality Control & Inspection</h3>
-                            <p class="text-sm text-brand-muted leading-relaxed">Comprehensive ISO & AQL 2.5 inspections with detailed PDF/Video reporting prior to final balance payments.</p>
-                            <a href="#services" onclick="navigateTo('services')" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-gold pt-2">
-                                Learn More <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
-                            </a>
-                        </div>
-
-                        <div class="bg-brand-surface p-8 rounded-2xl border border-brand-border space-y-4 hover:border-brand-gold transition-colors">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-dark shadow-sm">
-                                <i data-lucide="truck" class="w-6 h-6"></i>
-                            </div>
-                            <h3 class="text-xl font-bold font-heading text-brand-dark">Logistics & Customs Clearance</h3>
-                            <p class="text-sm text-brand-muted leading-relaxed">Freight consolidation, custom export documentation, and DDP/FOB door-to-door delivery coordination.</p>
-                            <a href="#services" onclick="navigateTo('services')" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-gold pt-2">
-                                Learn More <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SOURDEN Operational Promise / Integrity Banner -->
-            <section class="py-16 bg-brand-dark text-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid md:grid-cols-2 gap-12 items-center">
-                        <div class="space-y-6">
-                            <span class="text-brand-gold text-xs font-semibold uppercase tracking-widest">Our Integrity Standard</span>
-                            <h2 class="text-3xl sm:text-4xl font-extrabold font-heading leading-tight">
-                                Why Global Brands Trust SOURDEN On The Ground.
-                            </h2>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Most traditional sourcing agents take hidden commissions from suppliers. SOURDEN operates under a strict transparent agency fee model: you pay factory-direct prices, and we protect your exact engineering specifications.
-                            </p>
-                            <ul class="space-y-3 text-sm text-gray-300">
-                                <li class="flex items-center gap-3">
-                                    <i data-lucide="check" class="w-5 h-5 text-brand-gold"></i> Direct payment to manufacturer bank accounts or verified escrow
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i data-lucide="check" class="w-5 h-5 text-brand-gold"></i> Non-Disclosure Agreements (NDAs) enforced under Chinese law
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i data-lucide="check" class="w-5 h-5 text-brand-gold"></i> Full ownership of molds, tooling, and intellectual property
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-900/80 p-8 rounded-2xl border border-gray-800 space-y-6">
-                            <h3 class="text-xl font-bold font-heading text-white">Need an immediate factory evaluation?</h3>
-                            <p class="text-xs text-gray-400">Submit your product specs or target price, and our engineering team will evaluate manufacturing feasibility within 24 hours.</p>
-                            <button onclick="openSourcingModal()" class="w-full bg-brand-gold text-brand-dark font-bold py-3.5 rounded-xl hover:bg-white transition-colors text-sm">
-                                Launch Sourcing Assessment
+                        <!-- CTA Group -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                            <button onclick="openRequestModal()" class="bg-ink hover:bg-neutral-800 text-white text-[15px] font-medium h-[52px] px-8 rounded-[3px] transition-all duration-200 flex items-center justify-center shadow-sm">
+                                Start a Sourcing Request
                             </button>
+                            <a href="#how-it-works" class="inline-flex items-center justify-center text-ink font-medium text-[15px] h-[52px] px-6 border border-stone hover:border-ink transition-colors group bg-white/50">
+                                How It Works 
+                                <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                            </a>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
 
-        <!-- VIEW: SERVICES -->
-        <div id="view-services" class="page-section py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Comprehensive Solutions</span>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-heading mt-2">Sourcing & Supply Chain Services</h1>
-                    <p class="text-brand-muted text-base max-w-2xl mt-2">Tailored operational modules to support brands, importers, and industrial buyers worldwide.</p>
-                </div>
-
-                <!-- Interactive Services Tabs -->
-                <div class="bg-white rounded-2xl border border-brand-border p-6 shadow-sm">
-                    <div class="flex flex-wrap gap-2 border-b border-brand-border pb-4 mb-8">
-                        <button onclick="switchTab('services', 'tab-sourcing')" id="tab-btn-tab-sourcing" class="tab-btn active px-5 py-2.5 rounded-lg border border-brand-border text-sm font-semibold hover:border-brand-gold transition-colors">
-                            1. Sourcing & Supplier Audit
-                        </button>
-                        <button onclick="switchTab('services', 'tab-qc')" id="tab-btn-tab-qc" class="tab-btn px-5 py-2.5 rounded-lg border border-brand-border text-sm font-semibold hover:border-brand-gold transition-colors">
-                            2. Quality Control & Testing
-                        </button>
-                        <button onclick="switchTab('services', 'tab-custom')" id="tab-btn-tab-custom" class="tab-btn px-5 py-2.5 rounded-lg border border-brand-border text-sm font-semibold hover:border-brand-gold transition-colors">
-                            3. Custom Manufacturing & OEM
-                        </button>
-                        <button onclick="switchTab('services', 'tab-logistics')" id="tab-btn-tab-logistics" class="tab-btn px-5 py-2.5 rounded-lg border border-brand-border text-sm font-semibold hover:border-brand-gold transition-colors">
-                            4. Warehousing & Shipping
-                        </button>
-                    </div>
-
-                    <!-- Tab Content 1 -->
-                    <div id="tab-sourcing" class="tab-content space-y-6">
-                        <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <div class="space-y-4">
-                                <h3 class="text-2xl font-bold font-heading text-brand-dark">Supplier Identification & Factory Audits</h3>
-                                <p class="text-sm text-brand-muted leading-relaxed">We audit factory facilities, verify business licenses, inspect machinery, and assess labor practices on-site to ensure you work only with verified manufacturers.</p>
-                                <ul class="space-y-2 text-sm text-brand-dark">
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Official legal business background search</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Production line capacity & machinery assessment</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Raw material sourcing audit & ISO verification</li>
-                                </ul>
-                            </div>
-                            <div class="bg-brand-surface p-6 rounded-xl border border-brand-border">
-                                <h4 class="text-sm font-bold text-brand-dark mb-3">Sourcing Deliverable Sample</h4>
-                                <div class="space-y-3 text-xs text-brand-muted">
-                                    <div class="p-3 bg-white rounded border border-brand-border flex justify-between">
-                                        <span>3 Verified Supplier Profiles</span>
-                                        <span class="font-bold text-brand-dark">Included</span>
-                                    </div>
-                                    <div class="p-3 bg-white rounded border border-brand-border flex justify-between">
-                                        <span>Itemized Bill of Materials (BOM)</span>
-                                        <span class="font-bold text-brand-dark">Included</span>
-                                    </div>
-                                    <div class="p-3 bg-white rounded border border-brand-border flex justify-between">
-                                        <span>On-site Inspection Video & Photo Log</span>
-                                        <span class="font-bold text-brand-dark">Included</span>
-                                    </div>
+                    <!-- Hero Visual (Right Column) -->
+                    <div class="lg:col-span-6">
+                        <div class="relative bg-stone/40 p-2 md:p-3 border border-stone">
+                            <div class="overflow-hidden relative aspect-[4/3] bg-neutral-200">
+                                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" 
+                                     alt="Sourcing and manufacturing inspection in China" 
+                                     class="w-full h-full object-cover img-editorial"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/800x600/111315/FFFFFF?text=SOURCING+IN+CHINA';" />
+                                <div class="absolute bottom-3 right-3 bg-ink/90 text-white text-[11px] font-mono uppercase tracking-widest px-3 py-1.5 backdrop-blur-sm">
+                                    SOURCING IN CHINA
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tab Content 2 -->
-                    <div id="tab-qc" class="tab-content hidden space-y-6">
-                        <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <div class="space-y-4">
-                                <h3 class="text-2xl font-bold font-heading text-brand-dark">Rigorous ISO/AQL 2.5 Quality Assurance</h3>
-                                <p class="text-sm text-brand-muted leading-relaxed">Prevent defective shipments before goods leave China. Our inspectors follow international Acceptable Quality Limit (AQL) standards.</p>
-                                <ul class="space-y-2 text-sm text-brand-dark">
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Pre-Production Inspection (PPI)</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> During Production Inspection (DUPRO)</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Pre-Shipment Inspection (PSI) & Container Loading Supervision</li>
-                                </ul>
-                            </div>
-                            <div class="bg-brand-surface p-6 rounded-xl border border-brand-border">
-                                <h4 class="text-sm font-bold text-brand-dark mb-3">Inspection Report Features</h4>
-                                <div class="space-y-2 text-xs text-brand-muted">
-                                    <p>• 80+ high-resolution photographs & video evidence</p>
-                                    <p>• Defect classification (Critical, Major, Minor)</p>
-                                    <p>• Barcode, packaging, and weight drop testing</p>
-                                    <p>• Pass/Fail sign-off prior to balance payment release</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tab Content 3 -->
-                    <div id="tab-custom" class="tab-content hidden space-y-6">
-                        <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <div class="space-y-4">
-                                <h3 class="text-2xl font-bold font-heading text-brand-dark">OEM/ODM Product Development & Tooling</h3>
-                                <p class="text-sm text-brand-muted leading-relaxed">Transform CAD drawings and tech packs into production-ready physical samples with full mold protection.</p>
-                                <ul class="space-y-2 text-sm text-brand-dark">
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Rapid prototyping & 3D printing review</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Custom mold creation & tooling ownership legal protection</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Packaging design & eco-friendly materials sourcing</li>
-                                </ul>
-                            </div>
-                            <div class="bg-brand-surface p-6 rounded-xl border border-brand-border">
-                                <h4 class="text-sm font-bold text-brand-dark mb-3">Tooling Protection</h4>
-                                <p class="text-xs text-brand-muted">All molds produced through SOURDEN remain 100% your property under enforceable Chinese NNN (Non-disclosure, Non-use, Non-circumvention) legal contracts.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tab Content 4 -->
-                    <div id="tab-logistics" class="tab-content hidden space-y-6">
-                        <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <div class="space-y-4">
-                                <h3 class="text-2xl font-bold font-heading text-brand-dark">Consolidation & Global Freight Management</h3>
-                                <p class="text-sm text-brand-muted leading-relaxed">Streamline shipments from multiple suppliers into single container loads, reducing overall freight and customs costs.</p>
-                                <ul class="space-y-2 text-sm text-brand-dark">
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Free 30-day warehousing at Ningbo/Shenzhen hubs</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> Sea (FCL/LCL), Air Freight & Express Courier solutions</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold"></i> HS Code verification & Export customs handling</li>
-                                </ul>
-                            </div>
-                            <div class="bg-brand-surface p-6 rounded-xl border border-brand-border">
-                                <h4 class="text-sm font-bold text-brand-dark mb-3">Hub Locations</h4>
-                                <p class="text-xs text-brand-muted">Strategic consolidation warehouses located near major export ports in Yiwu, Shenzhen, and Ningbo.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW: INDUSTRIES -->
-        <div id="view-industries" class="page-section py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Sector Expertise</span>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-heading mt-2">Industries We Serve</h1>
-                    <p class="text-brand-muted text-base max-w-2xl mt-2">Deep manufacturing knowledge across core consumer and industrial categories.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Industry Card 1 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border space-y-4 shadow-sm hover:border-brand-gold transition-colors">
-                        <div class="w-12 h-12 bg-brand-surface rounded-xl flex items-center justify-center text-brand-gold">
-                            <i data-lucide="cpu" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-heading text-brand-dark">Electronics & Smart Hardware</h3>
-                        <p class="text-sm text-brand-muted leading-relaxed">PCBs, consumer gadgets, LED lighting, smart home devices, and custom cable assemblies manufactured in Shenzhen cluster.</p>
-                    </div>
-
-                    <!-- Industry Card 2 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border space-y-4 shadow-sm hover:border-brand-gold transition-colors">
-                        <div class="w-12 h-12 bg-brand-surface rounded-xl flex items-center justify-center text-brand-gold">
-                            <i data-lucide="home" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-heading text-brand-dark">Home, Garden & Kitchen</h3>
-                        <p class="text-sm text-brand-muted leading-relaxed">Cookware, furniture, storage solutions, outdoor garden gear, and household organizer lines.</p>
-                    </div>
-
-                    <!-- Industry Card 3 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border space-y-4 shadow-sm hover:border-brand-gold transition-colors">
-                        <div class="w-12 h-12 bg-brand-surface rounded-xl flex items-center justify-center text-brand-gold">
-                            <i data-lucide="dumbell" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-heading text-brand-dark">Fitness & Sports Equipment</h3>
-                        <p class="text-sm text-brand-muted leading-relaxed">Strength gear, recovery products, outdoor camping apparatus, and athletic accessories with high durability standards.</p>
-                    </div>
-
-                    <!-- Industry Card 4 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border space-y-4 shadow-sm hover:border-brand-gold transition-colors">
-                        <div class="w-12 h-12 bg-brand-surface rounded-xl flex items-center justify-center text-brand-gold">
-                            <i data-lucide="wrench" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-heading text-brand-dark">Industrial Components & Hardware</h3>
-                        <p class="text-sm text-brand-muted leading-relaxed">CNC machining, injection molds, metal stampings, fasteners, and custom plastic tooling.</p>
-                    </div>
-
-                    <!-- Industry Card 5 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border space-y-4 shadow-sm hover:border-brand-gold transition-colors">
-                        <div class="w-12 h-12 bg-brand-surface rounded-xl flex items-center justify-center text-brand-gold">
-                            <i data-lucide="package" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-heading text-brand-dark">Packaging & Custom Retail Containers</h3>
-                        <p class="text-sm text-brand-muted leading-relaxed">Eco-friendly rigid boxes, corrugated mailers, glass bottles, and biodegradable cosmetic containers.</p>
-                    </div>
-
-                    <!-- Industry Card 6 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border space-y-4 shadow-sm hover:border-brand-gold transition-colors">
-                        <div class="w-12 h-12 bg-brand-surface rounded-xl flex items-center justify-center text-brand-gold">
-                            <i data-lucide="shirt" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-heading text-brand-dark">Apparel & Textiles</h3>
-                        <p class="text-sm text-brand-muted leading-relaxed">Functional workwear, bags, luggage, activewear fabrics, and specialized promotional textiles.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW: HOW IT WORKS -->
-        <div id="view-how-it-works" class="page-section py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Clear Process</span>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-heading mt-2">How SOURDEN Operates</h1>
-                    <p class="text-brand-muted text-base max-w-2xl mt-2">A structured 4-phase sourcing methodology designed to eliminate supply chain risk.</p>
-                </div>
-
-                <div class="space-y-8">
-                    <!-- Step 1 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border grid md:grid-cols-12 gap-6 items-center">
-                        <div class="md:col-span-2 flex items-center justify-center">
-                            <div class="w-16 h-16 rounded-2xl bg-brand-dark text-brand-gold font-extrabold text-2xl font-heading flex items-center justify-center">
-                                01
-                            </div>
-                        </div>
-                        <div class="md:col-span-10 space-y-2">
-                            <h3 class="text-xl font-bold font-heading text-brand-dark">Requirement Analysis & Feasibility Study</h3>
-                            <p class="text-sm text-brand-muted leading-relaxed">You submit product specifications, target pricing, target MOQs, and quality expectations. Our team analyzes raw material costs and manufacturing feasibility across leading industrial clusters in China.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border grid md:grid-cols-12 gap-6 items-center">
-                        <div class="md:col-span-2 flex items-center justify-center">
-                            <div class="w-16 h-16 rounded-2xl bg-brand-dark text-brand-gold font-extrabold text-2xl font-heading flex items-center justify-center">
-                                02
-                            </div>
-                        </div>
-                        <div class="md:col-span-10 space-y-2">
-                            <h3 class="text-xl font-bold font-heading text-brand-dark">Supplier Shortlisting & Sample Approval</h3>
-                            <p class="text-sm text-brand-muted leading-relaxed">We evaluate 5-10 factories, perform background checks, negotiate pricing, and present you with the top 2-3 matched suppliers. We arrange physical sample development and consolidate courier delivery to your office.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border grid md:grid-cols-12 gap-6 items-center">
-                        <div class="md:col-span-2 flex items-center justify-center">
-                            <div class="w-16 h-16 rounded-2xl bg-brand-dark text-brand-gold font-extrabold text-2xl font-heading flex items-center justify-center">
-                                03
-                            </div>
-                        </div>
-                        <div class="md:col-span-10 space-y-2">
-                            <h3 class="text-xl font-bold font-heading text-brand-dark">Production Oversight & In-Line QC</h3>
-                            <p class="text-sm text-brand-muted leading-relaxed">Once sample approval is confirmed, production is initiated. SOURDEN inspectors conduct on-site raw material checks and inline production line audits to ensure timelines and quality standards are maintained.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border grid md:grid-cols-12 gap-6 items-center">
-                        <div class="md:col-span-2 flex items-center justify-center">
-                            <div class="w-16 h-16 rounded-2xl bg-brand-dark text-brand-gold font-extrabold text-2xl font-heading flex items-center justify-center">
-                                04
-                            </div>
-                        </div>
-                        <div class="md:col-span-10 space-y-2">
-                            <h3 class="text-xl font-bold font-heading text-brand-dark">Final Inspection & Global Logistics Execution</h3>
-                            <p class="text-sm text-brand-muted leading-relaxed">We perform pre-shipment AQL 2.5 quality control. Upon your written report approval, we oversee container loading, manage export customs documentation, and coordinate ocean or air transport to your port of choice.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW: ABOUT -->
-        <div id="view-about" class="page-section py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6">
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Who We Are</span>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-heading">Your On-Site Operational Shield in China</h1>
-                        <p class="text-brand-muted text-base leading-relaxed">
-                            SOURDEN was established to bridge the transparency gap between Western businesses and Chinese manufacturing networks. Without ground presence, international buyers frequently face quality drift, hidden markups, delayed production, and intellectual property vulnerabilities.
-                        </p>
-                        <p class="text-brand-muted text-base leading-relaxed">
-                            Headquartered in proximity to major manufacturing hubs with operational bases in Ningbo and Shenzhen, SOURDEN functions not as a passive broker, but as your active, in-house procurement department on the ground.
-                        </p>
-                        <div class="pt-4 grid grid-cols-2 gap-4">
-                            <div class="p-4 bg-white rounded-xl border border-brand-border">
-                                <h4 class="font-bold text-brand-dark text-sm">Transparency First</h4>
-                                <p class="text-xs text-brand-muted mt-1">Open book pricing and factory contacts provided directly.</p>
-                            </div>
-                            <div class="p-4 bg-white rounded-xl border border-brand-border">
-                                <h4 class="font-bold text-brand-dark text-sm">Legal Security</h4>
-                                <p class="text-xs text-brand-muted mt-1">Bilingual agreements tailored for legal enforceability in China.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl border border-brand-border shadow-sm space-y-6">
-                        <h3 class="text-xl font-bold font-heading text-brand-dark border-b border-brand-border pb-4">Contact Operational Hubs</h3>
-                        <div class="space-y-4 text-sm">
-                            <div>
-                                <h4 class="font-bold text-brand-dark">Headquarters & Inquiries</h4>
-                                <p class="text-brand-muted">Email: service@sourden.com</p>
-                                <p class="text-brand-muted">WhatsApp: +86 19861639802</p>
-                                <p class="text-brand-muted">Web: sourden.com</p>
-                            </div>
-                            <div class="pt-4 border-t border-brand-border">
-                                <h4 class="font-bold text-brand-dark">Southern China Operations</h4>
-                                <p class="text-brand-muted">Bao'an District, Shenzhen, Guangdong, China</p>
-                            </div>
-                            <div class="pt-4 border-t border-brand-border">
-                                <h4 class="font-bold text-brand-dark">Eastern China Operations</h4>
-                                <p class="text-brand-muted">Yinzhou District, Ningbo, Zhejiang, China</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW: INSIGHTS -->
-        <div id="view-insights" class="page-section py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">China Sourcing Knowledge Hub</span>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-heading mt-2">Sourcing Insights & Operational Guides</h1>
-                    <p class="text-brand-muted text-base max-w-2xl mt-2">Practical intelligence for managing overseas procurement and factory relationships.</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Article 1 -->
-                    <article class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-sm flex flex-col justify-between">
-                        <div class="p-6 space-y-3">
-                            <span class="text-xs text-brand-gold font-bold uppercase">Risk Mitigation</span>
-                            <h3 class="text-lg font-bold font-heading text-brand-dark leading-snug">How to Prevent Factory Subcontracting in China</h3>
-                            <p class="text-xs text-brand-muted leading-relaxed">Learn the key clauses to include in your manufacturing agreement to stop suppliers from quietly outsourcing production to unverified workshops.</p>
-                        </div>
-                        <div class="px-6 pb-6 pt-2 border-t border-brand-border/40 text-xs text-brand-muted flex justify-between items-center">
-                            <span>5 min read</span>
-                            <button onclick="openSourcingModal()" class="text-brand-dark font-bold hover:text-brand-gold">Request Spec Sheet</button>
-                        </div>
-                    </article>
-
-                    <!-- Article 2 -->
-                    <article class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-sm flex flex-col justify-between">
-                        <div class="p-6 space-y-3">
-                            <span class="text-xs text-brand-gold font-bold uppercase">Quality Assurance</span>
-                            <h3 class="text-lg font-bold font-heading text-brand-dark leading-snug">Understanding ISO & AQL 2.5 Inspection Benchmarks</h3>
-                            <p class="text-xs text-brand-muted leading-relaxed">A practical breakdown of critical, major, and minor defect limits to establish clear acceptance criteria with your manufacturer.</p>
-                        </div>
-                        <div class="px-6 pb-6 pt-2 border-t border-brand-border/40 text-xs text-brand-muted flex justify-between items-center">
-                            <span>7 min read</span>
-                            <button onclick="openSourcingModal()" class="text-brand-dark font-bold hover:text-brand-gold">Request Spec Sheet</button>
-                        </div>
-                    </article>
-
-                    <!-- Article 3 -->
-                    <article class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-sm flex flex-col justify-between">
-                        <div class="p-6 space-y-3">
-                            <span class="text-xs text-brand-gold font-bold uppercase">IP Protection</span>
-                            <h3 class="text-lg font-bold font-heading text-brand-dark leading-snug">Why standard Western NDAs fail in Chinese Courts</h3>
-                            <p class="text-xs text-brand-muted leading-relaxed">Why you need an enforceable Chinese NNN agreement governed by local law before sharing technical drawings or CAD models.</p>
-                        </div>
-                        <div class="px-6 pb-6 pt-2 border-t border-brand-border/40 text-xs text-brand-muted flex justify-between items-center">
-                            <span>6 min read</span>
-                            <button onclick="openSourcingModal()" class="text-brand-dark font-bold hover:text-brand-gold">Request Spec Sheet</button>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <!-- GLOBAL FAQ ACCORDION SECTION (Visible on Home & Info Views) -->
-        <section class="py-16 bg-white border-t border-brand-border">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Frequently Asked Questions</span>
-                    <h2 class="text-3xl font-extrabold text-brand-dark font-heading mt-2">Clear Answers to Sourcing Operations</h2>
-                </div>
-
-                <div class="space-y-4" id="faq-accordion">
-                    <!-- FAQ Item 1 -->
-                    <div class="border border-brand-border rounded-xl overflow-hidden">
-                        <button onclick="toggleFaq('faq-1')" class="w-full text-left p-5 font-bold font-heading text-brand-dark flex justify-between items-center bg-brand-surface/50 hover:bg-brand-surface transition-colors">
-                            <span>How does SOURDEN charge for its services?</span>
-                            <i id="icon-faq-1" data-lucide="chevron-down" class="w-5 h-5 text-brand-muted transition-transform"></i>
-                        </button>
-                        <div id="faq-1" class="hidden p-5 text-sm text-brand-muted bg-white border-t border-brand-border leading-relaxed">
-                            We operate on a transparent service fee structure (either a flat project fee for supplier matching/auditing or a low percentage fee for full order management). You receive original factory invoices and pay raw product costs directly.
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 2 -->
-                    <div class="border border-brand-border rounded-xl overflow-hidden">
-                        <button onclick="toggleFaq('faq-2')" class="w-full text-left p-5 font-bold font-heading text-brand-dark flex justify-between items-center bg-brand-surface/50 hover:bg-brand-surface transition-colors">
-                            <span>How do you protect my proprietary product designs?</span>
-                            <i id="icon-faq-2" data-lucide="chevron-down" class="w-5 h-5 text-brand-muted transition-transform"></i>
-                        </button>
-                        <div id="faq-2" class="hidden p-5 text-sm text-brand-muted bg-white border-t border-brand-border leading-relaxed">
-                            We execute enforceable bilingual NNN (Non-disclosure, Non-use, Non-circumvention) legal agreements under Chinese jurisdiction prior to revealing sensitive design assets or specifications to potential factories.
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 3 -->
-                    <div class="border border-brand-border rounded-xl overflow-hidden">
-                        <button onclick="toggleFaq('faq-3')" class="w-full text-left p-5 font-bold font-heading text-brand-dark flex justify-between items-center bg-brand-surface/50 hover:bg-brand-surface transition-colors">
-                            <span>What happens if goods fail pre-shipment quality inspection?</span>
-                            <i id="icon-faq-3" data-lucide="chevron-down" class="w-5 h-5 text-brand-muted transition-transform"></i>
-                        </button>
-                        <div id="faq-3" class="hidden p-5 text-sm text-brand-muted bg-white border-t border-brand-border leading-relaxed">
-                            If inspection fails our pre-agreed AQL limits, we withhold final balance payment release. The factory is legally obligated under our procurement contract to rework or replace defective units at their own expense before re-inspection.
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
 
-    </main>
+        <!-- 03 CAPABILITIES STRIP -->
+        <section class="bg-ink text-white py-8 md:py-0 md:h-[96px] border-b border-neutral-800 flex items-center">
+            <div class="max-w-container mx-auto px-5 md:px-8 w-full">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-neutral-800">
+                    
+                    <div class="flex items-center gap-3 pt-4 md:pt-0 md:justify-center md:px-4">
+                        <span class="text-brass font-mono text-sm font-semibold">01</span>
+                        <span class="text-xs md:text-sm tracking-wide font-medium text-neutral-200">Supplier Sourcing</span>
+                    </div>
 
-    <!-- MODAL / VIEW: /sourcing-request -->
-    <div id="sourcing-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="relative bg-white rounded-2xl border border-brand-border shadow-2xl max-w-2xl w-full p-6 sm:p-8 my-8">
-            <!-- Modal Header -->
-            <div class="flex justify-between items-start border-b border-brand-border pb-4">
-                <div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Direct Specification Submission</span>
-                    <h2 class="text-2xl font-extrabold text-brand-dark font-heading">Submit Sourcing Request</h2>
+                    <div class="flex items-center gap-3 pt-4 md:pt-0 md:justify-center md:px-4">
+                        <span class="text-brass font-mono text-sm font-semibold">02</span>
+                        <span class="text-xs md:text-sm tracking-wide font-medium text-neutral-200">Factory Verification</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4 md:pt-0 md:justify-center md:px-4">
+                        <span class="text-brass font-mono text-sm font-semibold">03</span>
+                        <span class="text-xs md:text-sm tracking-wide font-medium text-neutral-200">Purchasing</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4 md:pt-0 md:justify-center md:px-4">
+                        <span class="text-brass font-mono text-sm font-semibold">04</span>
+                        <span class="text-xs md:text-sm tracking-wide font-medium text-neutral-200">Quality Control</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4 md:pt-0 md:justify-center md:px-4 col-span-2 md:col-span-1">
+                        <span class="text-brass font-mono text-sm font-semibold">05</span>
+                        <span class="text-xs md:text-sm tracking-wide font-medium text-neutral-200">Global Shipping</span>
+                    </div>
+
                 </div>
-                <button onclick="closeSourcingModal()" class="text-brand-muted hover:text-brand-dark p-1 rounded-lg">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
             </div>
+        </section>
 
-            <!-- Modal Form -->
-            <form id="sourcing-form" onsubmit="handleFormSubmit(event)" class="space-y-4 mt-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-brand-dark mb-1">Your Full Name *</label>
-                        <input type="text" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm focus:outline-none focus:border-brand-gold">
+        <!-- 04 WHAT WE DO -->
+        <section class="bg-ivory py-20 md:py-28 border-b border-stone">
+            <div class="max-w-container mx-auto px-5 md:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                    
+                    <!-- Left Editorial Intro -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                            SOURCING, SIMPLIFIED
+                        </span>
+                        <h2 class="text-[32px] md:text-[42px] font-bold text-ink leading-[1.1] font-heading">
+                            Sourcing is more than finding a supplier.
+                        </h2>
+                        <p class="text-secondaryText text-[16px] md:text-[17px] leading-relaxed pt-2">
+                            Finding a supplier is only the beginning. We help you navigate the process from supplier research and quotation to purchasing, quality control and shipping.
+                        </p>
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-brand-dark mb-1">Company Email *</label>
-                        <input type="email" required placeholder="john@company.com" class="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm focus:outline-none focus:border-brand-gold">
+
+                    <!-- Right Vertical Process List -->
+                    <div class="lg:col-span-7 divide-y divide-stone border-t border-b border-stone">
+                        
+                        <div class="py-6 flex items-center justify-between group hover:pl-2 transition-all duration-200 cursor-default">
+                            <div class="flex items-center gap-6">
+                                <span class="font-mono text-sm text-brass font-medium">01</span>
+                                <h3 class="text-xl md:text-2xl font-semibold text-ink font-heading">Supplier Research</h3>
+                            </div>
+                            <span class="text-stone group-hover:text-brass transition-colors font-mono">→</span>
+                        </div>
+
+                        <div class="py-6 flex items-center justify-between group hover:pl-2 transition-all duration-200 cursor-default">
+                            <div class="flex items-center gap-6">
+                                <span class="font-mono text-sm text-brass font-medium">02</span>
+                                <h3 class="text-xl md:text-2xl font-semibold text-ink font-heading">Quotation</h3>
+                            </div>
+                            <span class="text-stone group-hover:text-brass transition-colors font-mono">→</span>
+                        </div>
+
+                        <div class="py-6 flex items-center justify-between group hover:pl-2 transition-all duration-200 cursor-default">
+                            <div class="flex items-center gap-6">
+                                <span class="font-mono text-sm text-brass font-medium">03</span>
+                                <h3 class="text-xl md:text-2xl font-semibold text-ink font-heading">Purchasing</h3>
+                            </div>
+                            <span class="text-stone group-hover:text-brass transition-colors font-mono">→</span>
+                        </div>
+
+                        <div class="py-6 flex items-center justify-between group hover:pl-2 transition-all duration-200 cursor-default">
+                            <div class="flex items-center gap-6">
+                                <span class="font-mono text-sm text-brass font-medium">04</span>
+                                <h3 class="text-xl md:text-2xl font-semibold text-ink font-heading">Quality Control</h3>
+                            </div>
+                            <span class="text-stone group-hover:text-brass transition-colors font-mono">→</span>
+                        </div>
+
+                        <div class="py-6 flex items-center justify-between group hover:pl-2 transition-all duration-200 cursor-default">
+                            <div class="flex items-center gap-6">
+                                <span class="font-mono text-sm text-brass font-medium">05</span>
+                                <h3 class="text-xl md:text-2xl font-semibold text-ink font-heading">Shipping</h3>
+                            </div>
+                            <span class="text-stone group-hover:text-brass transition-colors font-mono">→</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 SERVICES -->
+        <section id="services" class="bg-white py-20 md:py-28 border-b border-stone">
+            <div class="max-w-container mx-auto px-5 md:px-8">
+                
+                <!-- Section Header -->
+                <div class="mb-14 md:mb-20 space-y-3">
+                    <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                        OUR SERVICES
+                    </span>
+                    <h2 class="text-[32px] md:text-[44px] font-bold text-ink leading-[1.1] font-heading">
+                        From supplier discovery to final shipment.
+                    </h2>
+                    <p class="text-secondaryText text-[17px]">
+                        One partner across the process.
+                    </p>
+                </div>
+
+                <!-- Editorial Interactive Rows -->
+                <div id="services-container" class="divide-y divide-stone border-t border-b border-stone">
+                    <!-- Populated via Javascript JS Architecture -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 06 HOW IT WORKS -->
+        <section id="how-it-works" class="bg-ivory py-20 md:py-28 border-b border-stone">
+            <div class="max-w-container mx-auto px-5 md:px-8">
+                
+                <!-- Section Header -->
+                <div class="mb-16 space-y-3 max-w-2xl">
+                    <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                        HOW IT WORKS
+                    </span>
+                    <h2 class="text-[32px] md:text-[44px] font-bold text-ink tracking-tight leading-[1.05] font-heading">
+                        FROM NEED TO DONE.
+                    </h2>
+                    <p class="text-secondaryText text-[17px]">
+                        A straightforward sourcing process, from your first request to final shipment.
+                    </p>
+                </div>
+
+                <!-- Timeline Steps (Desktop & Mobile) -->
+                <div class="relative pt-6 pb-12">
+                    
+                    <!-- Desktop Horizontal Connecting Line -->
+                    <div class="hidden lg:block absolute top-[28px] left-0 right-0 h-[1px] bg-stone z-0"></div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-6 relative z-10">
+                        
+                        <!-- Step 01 -->
+                        <div class="space-y-4 bg-ivory lg:bg-transparent p-4 lg:p-0 border lg:border-none border-stone rounded-[2px]">
+                            <div class="flex lg:block items-center gap-4">
+                                <div class="w-8 h-8 bg-ink text-white font-mono text-xs font-bold rounded-full flex items-center justify-center">
+                                    01
+                                </div>
+                                <h3 class="text-lg font-bold text-ink font-heading mt-2">Tell Us What You Need</h3>
+                            </div>
+                            <p class="text-secondaryText text-sm leading-relaxed">
+                                Share your product, specifications, quantity, target price and destination.
+                            </p>
+                        </div>
+
+                        <!-- Step 02 -->
+                        <div class="space-y-4 bg-ivory lg:bg-transparent p-4 lg:p-0 border lg:border-none border-stone rounded-[2px]">
+                            <div class="flex lg:block items-center gap-4">
+                                <div class="w-8 h-8 bg-ink text-white font-mono text-xs font-bold rounded-full flex items-center justify-center">
+                                    02
+                                </div>
+                                <h3 class="text-lg font-bold text-ink font-heading mt-2">Find Suitable Suppliers</h3>
+                            </div>
+                            <p class="text-secondaryText text-sm leading-relaxed">
+                                Research suppliers that match your requirements and sourcing goals.
+                            </p>
+                        </div>
+
+                        <!-- Step 03 -->
+                        <div class="space-y-4 bg-ivory lg:bg-transparent p-4 lg:p-0 border lg:border-none border-stone rounded-[2px]">
+                            <div class="flex lg:block items-center gap-4">
+                                <div class="w-8 h-8 bg-ink text-white font-mono text-xs font-bold rounded-full flex items-center justify-center">
+                                    03
+                                </div>
+                                <h3 class="text-lg font-bold text-ink font-heading mt-2">Verify & Compare</h3>
+                            </div>
+                            <p class="text-secondaryText text-sm leading-relaxed">
+                                Compare capabilities, quotations, MOQ, lead times and other relevant factors.
+                            </p>
+                        </div>
+
+                        <!-- Step 04 -->
+                        <div class="space-y-4 bg-ivory lg:bg-transparent p-4 lg:p-0 border lg:border-none border-stone rounded-[2px]">
+                            <div class="flex lg:block items-center gap-4">
+                                <div class="w-8 h-8 bg-ink text-white font-mono text-xs font-bold rounded-full flex items-center justify-center">
+                                    04
+                                </div>
+                                <h3 class="text-lg font-bold text-ink font-heading mt-2">Manage the Order</h3>
+                            </div>
+                            <p class="text-secondaryText text-sm leading-relaxed">
+                                Coordinate purchasing, supplier communication, production and order progress.
+                            </p>
+                        </div>
+
+                        <!-- Step 05 -->
+                        <div class="space-y-4 bg-ivory lg:bg-transparent p-4 lg:p-0 border lg:border-none border-stone rounded-[2px]">
+                            <div class="flex lg:block items-center gap-4">
+                                <div class="w-8 h-8 bg-brass text-white font-mono text-xs font-bold rounded-full flex items-center justify-center">
+                                    05
+                                </div>
+                                <h3 class="text-lg font-bold text-ink font-heading mt-2">Inspect & Ship</h3>
+                            </div>
+                            <p class="text-secondaryText text-sm leading-relaxed">
+                                Arrange quality checks and coordinate shipping from China.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-brand-dark mb-1">WhatsApp / Phone *</label>
-                        <input type="text" required placeholder="+1 555 000 0000" class="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm focus:outline-none focus:border-brand-gold">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-brand-dark mb-1">Target Category *</label>
-                        <select required class="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm focus:outline-none focus:border-brand-gold">
-                            <option value="">Select Category...</option>
-                            <option value="electronics">Electronics & Hardware</option>
-                            <option value="home">Home & Kitchen</option>
-                            <option value="fitness">Fitness & Outdoor</option>
-                            <option value="industrial">Industrial Components</option>
-                            <option value="packaging">Packaging & Retail</option>
-                            <option value="apparel">Apparel & Textiles</option>
-                            <option value="other">Other Custom Product</option>
-                        </select>
-                    </div>
+                <!-- Visual Phrase Banner -->
+                <div class="mt-8 pt-8 border-t border-stone flex items-center justify-between text-sm uppercase tracking-widest text-secondaryText font-heading">
+                    <span>FROM NEED</span>
+                    <span class="text-brass font-bold font-mono">→ DONE</span>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-bold uppercase text-brand-dark mb-1">Estimated Annual Purchasing Volume</label>
-                    <select class="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm focus:outline-none focus:border-brand-gold">
-                        <option value="10k-50k">$10,000 - $50,000</option>
-                        <option value="50k-200k">$50,000 - $200,000</option>
-                        <option value="200k+">$200,000+</option>
-                    </select>
+            </div>
+        </section>
+
+        <!-- 07 INDUSTRIES -->
+        <section id="industries" class="bg-white py-20 md:py-28 border-b border-stone">
+            <div class="max-w-container mx-auto px-5 md:px-8">
+                
+                <!-- Section Header -->
+                <div class="mb-14 space-y-3">
+                    <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                        WHAT WE SOURCE
+                    </span>
+                    <h2 class="text-[32px] md:text-[44px] font-bold text-ink leading-[1.1] font-heading">
+                        From everyday products to specialized requirements.
+                    </h2>
+                    <p class="text-secondaryText text-[17px] max-w-2xl">
+                        We work across a range of product categories, sourcing according to your specifications, target market and business needs.
+                    </p>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-bold uppercase text-brand-dark mb-1">Product Details & Specifications *</label>
-                    <textarea required rows="4" placeholder="Describe your product requirements, target unit cost, target MOQ, and preferred delivery schedule..." class="w-full px-4 py-2.5 rounded-lg border border-brand-border text-sm focus:outline-none focus:border-brand-gold"></textarea>
+                <!-- Asymmetrical Editorial Image Grid -->
+                <div id="industries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Populated via Javascript -->
                 </div>
 
-                <div id="form-status" class="hidden p-3 rounded-lg text-xs font-semibold"></div>
-
-                <div class="pt-2 flex items-center justify-end gap-3">
-                    <button type="button" onclick="closeSourcingModal()" class="px-5 py-2.5 rounded-lg border border-brand-border text-xs font-bold text-brand-dark hover:bg-brand-surface">Cancel</button>
-                    <button type="submit" class="bg-brand-dark text-white hover:bg-brand-gold hover:text-brand-dark px-6 py-2.5 rounded-lg text-xs font-bold transition-all flex items-center gap-2">
-                        <span>Submit Inquiry</span>
-                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                <!-- Bottom CTA -->
+                <div class="mt-16 text-center">
+                    <button onclick="openRequestModal()" class="inline-flex items-center text-ink font-semibold hover:text-brass text-base md:text-lg transition-colors group">
+                        Looking for something specific? Tell us what you're looking for 
+                        <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                     </button>
                 </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="bg-brand-dark text-white pt-16 pb-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-gray-800">
-                <!-- Brand Info -->
-                <div class="md:col-span-5 space-y-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 bg-brand-gold text-brand-dark flex items-center justify-center font-heading font-extrabold text-xl rounded">
-                            S
-                        </div>
-                        <span class="font-heading font-bold text-2xl tracking-wider text-white">SOURDEN</span>
-                    </div>
-                    <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
-                        SOURDEN is a premier China sourcing agency and supply chain management provider, protecting global brands through direct factory auditing, transparent negotiations, and AQL quality inspection.
-                    </p>
-                    <div class="text-xs text-gray-400 space-y-1 pt-2">
-                        <p><strong class="text-white">Domain:</strong> sourden.com</p>
-                        <p><strong class="text-white">Direct Email:</strong> service@sourden.com</p>
-                        <p><strong class="text-white">WhatsApp Operations:</strong> +86 19861639802</p>
+            </div>
+        </section>
+
+        <!-- 08 SOURCING WITHOUT THE BARRIERS -->
+        <section id="sourcing-barriers" class="bg-ivory py-20 md:py-28 border-b border-stone">
+            <div class="max-w-container mx-auto px-5 md:px-8 space-y-20">
+                
+                <!-- Header & Main Prominent Statement -->
+                <div class="space-y-6">
+                    <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                        WHO WE'RE BUILT FOR
+                    </span>
+                    <h2 class="text-[32px] md:text-[44px] font-bold text-ink tracking-tight font-heading">
+                        SOURCING WITHOUT THE BARRIERS.
+                    </h2>
+                    <div class="p-8 md:p-12 bg-white border border-stone my-6">
+                        <p class="text-[22px] md:text-[32px] font-medium text-ink leading-[1.3] font-heading">
+                            "You don't need a large purchasing team, huge order volumes or years of experience in China to source good products."
+                        </p>
                     </div>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="md:col-span-3 space-y-3">
-                    <h4 class="text-xs font-bold uppercase tracking-widest text-brand-gold">Navigation</h4>
-                    <ul class="space-y-2 text-xs text-gray-300">
-                        <li><a href="#services" onclick="navigateTo('services')" class="hover:text-brand-gold transition-colors">Sourcing & Inspection Services</a></li>
-                        <li><a href="#industries" onclick="navigateTo('industries')" class="hover:text-brand-gold transition-colors">Supported Industries</a></li>
-                        <li><a href="#how-it-works" onclick="navigateTo('how-it-works')" class="hover:text-brand-gold transition-colors">Operational Process</a></li>
-                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-brand-gold transition-colors">About SOURDEN Hub</a></li>
-                        <li><a href="#insights" onclick="navigateTo('insights')" class="hover:text-brand-gold transition-colors">Sourcing Insights</a></li>
+                <!-- 4 Audience Groups Editorial Rows -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="p-8 bg-white/60 border border-stone space-y-3">
+                        <span class="text-brass font-mono text-xs font-bold">01</span>
+                        <h3 class="text-xl font-bold text-ink font-heading">Small Wholesalers</h3>
+                        <p class="text-secondaryText text-sm leading-relaxed">
+                            Looking for reliable products without committing to large order volumes.
+                        </p>
+                    </div>
+
+                    <div class="p-8 bg-white/60 border border-stone space-y-3">
+                        <span class="text-brass font-mono text-xs font-bold">02</span>
+                        <h3 class="text-xl font-bold text-ink font-heading">Independent Retailers</h3>
+                        <p class="text-secondaryText text-sm leading-relaxed">
+                            Need a better source but don't have a dedicated purchasing team.
+                        </p>
+                    </div>
+
+                    <div class="p-8 bg-white/60 border border-stone space-y-3">
+                        <span class="text-brass font-mono text-xs font-bold">03</span>
+                        <h3 class="text-xl font-bold text-ink font-heading">Local Shops</h3>
+                        <p class="text-secondaryText text-sm leading-relaxed">
+                            Want to access Chinese suppliers without navigating the sourcing process alone.
+                        </p>
+                    </div>
+
+                    <div class="p-8 bg-white/60 border border-stone space-y-3">
+                        <span class="text-brass font-mono text-xs font-bold">04</span>
+                        <h3 class="text-xl font-bold text-ink font-heading">Growing Brands</h3>
+                        <p class="text-secondaryText text-sm leading-relaxed">
+                            Ready to build a more reliable supply chain as your business grows.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- NO-FIXED-MOQ Block -->
+                <div class="bg-ink text-white p-8 md:p-12 border border-neutral-800 space-y-4">
+                    <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                        SOURCE AT YOUR SCALE.
+                    </span>
+                    <p class="text-lg md:text-xl text-neutral-200 leading-relaxed max-w-3xl">
+                        We don't impose our own minimum order quantity. We'll work with you to find sourcing options that fit your current stage and requirements.
+                    </p>
+                    <p class="text-xs text-neutral-400 italic">
+                        *Note: Factory/product MOQ depends on supplier capabilities and product category.
+                    </p>
+                </div>
+
+                <!-- GROW WITH THE CUSTOMER Visual Progression -->
+                <div class="space-y-8 pt-4">
+                    <div class="space-y-2">
+                        <h3 class="text-2xl md:text-3xl font-bold text-ink font-heading">START WHERE YOU ARE.</h3>
+                        <p class="text-secondaryText">Your sourcing needs change as your business grows. Sourden is built to grow with you.</p>
+                    </div>
+
+                    <!-- Clean Horizontal Flow -->
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 text-center">
+                        <div class="p-4 bg-white border border-stone text-xs md:text-sm font-semibold tracking-wide text-ink font-heading">
+                            FIRST ORDER
+                        </div>
+                        <div class="p-4 bg-white border border-stone text-xs md:text-sm font-semibold tracking-wide text-ink font-heading">
+                            TEST THE MARKET
+                        </div>
+                        <div class="p-4 bg-white border border-stone text-xs md:text-sm font-semibold tracking-wide text-ink font-heading">
+                            REPEAT ORDERS
+                        </div>
+                        <div class="p-4 bg-white border border-stone text-xs md:text-sm font-semibold tracking-wide text-ink font-heading">
+                            GROWING VOLUME
+                        </div>
+                        <div class="p-4 bg-ink text-white border border-ink text-xs md:text-sm font-semibold tracking-wide font-heading col-span-2 md:col-span-1">
+                            SCALE SOURCING
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 09 WHY SOURDEN -->
+        <section class="bg-ink text-white py-20 md:py-28 border-b border-neutral-800">
+            <div class="max-w-container mx-auto px-5 md:px-8 space-y-16">
+                
+                <div class="space-y-3">
+                    <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                        WHY SOURDEN
+                    </span>
+                    <h2 class="text-[32px] md:text-[44px] font-bold text-white tracking-tight leading-[1.05] font-heading">
+                        ONE PARTNER. THE WHOLE PROCESS.
+                    </h2>
+                </div>
+
+                <!-- Five Reasons List -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="space-y-3 p-6 border border-neutral-800 bg-neutral-900/50">
+                        <span class="text-brass font-mono text-sm font-bold">01</span>
+                        <h3 class="text-xl font-bold font-heading text-white">One Point of Contact</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            One partner coordinating sourcing from supplier research to shipment.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 p-6 border border-neutral-800 bg-neutral-900/50">
+                        <span class="text-brass font-mono text-sm font-bold">02</span>
+                        <h3 class="text-xl font-bold font-heading text-white">Local Supplier Access</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            Access to China's supplier network without navigating it alone.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 p-6 border border-neutral-800 bg-neutral-900/50">
+                        <span class="text-brass font-mono text-sm font-bold">03</span>
+                        <h3 class="text-xl font-bold font-heading text-white">Practical Verification</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            Look beyond online listings to understand supplier fit and capability.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 p-6 border border-neutral-800 bg-neutral-900/50">
+                        <span class="text-brass font-mono text-sm font-bold">04</span>
+                        <h3 class="text-xl font-bold font-heading text-white">Quality Before Shipping</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            Arrange product checks before goods leave China.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 p-6 border border-neutral-800 bg-neutral-900/50 md:col-span-2 lg:col-span-2">
+                        <span class="text-brass font-mono text-sm font-bold">05</span>
+                        <h3 class="text-xl font-bold font-heading text-white">End-to-End Coordination</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            Supplier communication, purchasing, production, quality control and shipping through one partner.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Brand Philosophy Statement -->
+                <div class="pt-8 border-t border-neutral-800 text-neutral-300 text-center font-heading text-lg md:text-xl italic max-w-2xl mx-auto">
+                    "Good sourcing isn't about finding the cheapest supplier. It's about finding the right supplier for the job."
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 10 CASE STUDIES -->
+        <section id="case-studies" class="bg-white py-20 md:py-28 border-b border-stone">
+            <div class="max-w-container mx-auto px-5 md:px-8">
+                
+                <div class="mb-14 space-y-3">
+                    <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                        CASE STUDIES
+                    </span>
+                    <h2 class="text-[32px] md:text-[44px] font-bold text-ink leading-[1.1] font-heading">
+                        Real sourcing. Real requirements.
+                    </h2>
+                    <p class="text-secondaryText text-[17px] max-w-2xl">
+                        Every sourcing project starts with a specific requirement. From product research and supplier selection to purchasing, quality control and shipping, we work through the details that turn a sourcing request into a workable order.
+                    </p>
+                </div>
+
+                <!-- Editorial Layout: 1 Large Featured + 2 Secondary Placeholders (Strictly No Fabricated Data) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <!-- Featured Case -->
+                    <div class="lg:col-span-7 border border-stone bg-ivory p-8 md:p-10 flex flex-col justify-between space-y-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-xs text-brass font-bold">FEATURED PROJECT 01</span>
+                                <span class="text-xs uppercase tracking-widest text-secondaryText font-medium">Canada</span>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-ink font-heading">
+                                CUSTOM COMMERCIAL CHRISTMAS TREE
+                            </h3>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="text-[11px] font-mono bg-stone/60 px-2.5 py-1 text-ink">Factory Sourcing</span>
+                                <span class="text-[11px] font-mono bg-stone/60 px-2.5 py-1 text-ink">Custom Specs</span>
+                                <span class="text-[11px] font-mono bg-stone/60 px-2.5 py-1 text-ink">Quality Inspection</span>
+                                <span class="text-[11px] font-mono bg-stone/60 px-2.5 py-1 text-ink">Global Logistics</span>
+                            </div>
+                        </div>
+
+                        <div class="aspect-[16/9] bg-stone/50 border border-stone flex items-center justify-center text-xs text-secondaryText font-mono uppercase">
+                            [PROJECT DOCUMENTATION PLACEHOLDER]
+                        </div>
+
+                        <div>
+                            <button onclick="openRequestModal('Custom Commercial Christmas Tree')" class="inline-flex items-center text-ink font-semibold hover:text-brass text-sm transition-colors group">
+                                Inquire About Similar Sourcing Project <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Cases Column -->
+                    <div class="lg:col-span-5 space-y-8">
+                        
+                        <!-- Case 02 -->
+                        <div class="border border-stone bg-ivory p-6 md:p-8 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-xs text-brass font-bold">PROJECT 02</span>
+                                <span class="text-xs uppercase tracking-widest text-secondaryText font-medium">Canada</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-ink font-heading">
+                                SPORTS JERSEYS & APPAREL
+                            </h3>
+                            <p class="text-xs text-secondaryText leading-relaxed">
+                                Custom material specification, sizing grid verification, and pre-shipment quality inspection.
+                            </p>
+                            <span class="inline-block text-[11px] font-mono text-brass uppercase tracking-wider">Verified Sourcing Project</span>
+                        </div>
+
+                        <!-- Case 03 Placeholder -->
+                        <div class="border border-dashed border-stone bg-white p-6 md:p-8 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-xs text-stone font-bold">PROJECT 03</span>
+                                <span class="text-xs uppercase tracking-widest text-stone font-medium">International</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-stone font-heading">
+                                CASE STUDY TO BE ADDED
+                            </h3>
+                            <p class="text-xs text-stone leading-relaxed">
+                                Case documentation in progress. No fabricated customer metrics or fake client names.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 11 INSIGHTS -->
+        <section id="insights" class="bg-ivory py-20 md:py-28 border-b border-stone">
+            <div class="max-w-container mx-auto px-5 md:px-8">
+                
+                <div class="mb-14 space-y-3">
+                    <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                        INSIGHTS
+                    </span>
+                    <h2 class="text-[32px] md:text-[44px] font-bold text-ink leading-[1.1] font-heading">
+                        Practical knowledge for sourcing from China.
+                    </h2>
+                    <p class="text-secondaryText text-[17px]">
+                        Practical guides, sourcing knowledge and insights to help you make better decisions when buying from China.
+                    </p>
+                </div>
+
+                <!-- Editorial Articles Layout (1 Featured + 2 Secondary) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <!-- Featured Article -->
+                    <article class="lg:col-span-7 bg-white border border-stone p-8 md:p-10 flex flex-col justify-between space-y-6">
+                        <div class="space-y-3">
+                            <span class="text-xs font-mono font-bold text-brass uppercase tracking-wider">SOURCING GUIDE</span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-ink font-heading leading-tight hover:text-brass transition-colors cursor-pointer" onclick="openArticleModal(0)">
+                                How to Find Reliable Suppliers in China
+                            </h3>
+                            <p class="text-secondaryText text-sm leading-relaxed">
+                                A practical guide to finding, comparing and evaluating Chinese suppliers before placing an order. Learn what red flags to avoid and how to assess true manufacturing capability.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-stone flex items-center justify-between">
+                            <span class="text-xs text-secondaryText">5 min read</span>
+                            <button onclick="openArticleModal(0)" class="text-sm font-semibold text-ink hover:text-brass transition-colors">Read Article →</button>
+                        </div>
+                    </article>
+
+                    <!-- Secondary Articles Column -->
+                    <div class="lg:col-span-5 space-y-8">
+                        
+                        <article class="bg-white border border-stone p-6 space-y-3">
+                            <span class="text-xs font-mono font-bold text-brass uppercase tracking-wider">SUPPLIER VERIFICATION</span>
+                            <h3 class="text-lg font-bold text-ink font-heading leading-snug hover:text-brass transition-colors cursor-pointer" onclick="openArticleModal(1)">
+                                How to Verify a Chinese Supplier Before You Order
+                            </h3>
+                            <p class="text-secondaryText text-xs leading-relaxed">
+                                What to check beyond a supplier's online profile, including product capability, MOQ, pricing, lead time and production requirements.
+                            </p>
+                            <div class="pt-2">
+                                <button onclick="openArticleModal(1)" class="text-xs font-semibold text-ink hover:text-brass transition-colors">Read Article →</button>
+                            </div>
+                        </article>
+
+                        <article class="bg-white border border-stone p-6 space-y-3">
+                            <span class="text-xs font-mono font-bold text-brass uppercase tracking-wider">SUPPLIER KNOWLEDGE</span>
+                            <h3 class="text-lg font-bold text-ink font-heading leading-snug hover:text-brass transition-colors cursor-pointer" onclick="openArticleModal(2)">
+                                China Supplier vs. Trading Company: What's the Difference?
+                            </h3>
+                            <p class="text-secondaryText text-xs leading-relaxed">
+                                Understanding the differences between manufacturers and trading companies, and when each may be suitable for your sourcing needs.
+                            </p>
+                            <div class="pt-2">
+                                <button onclick="openArticleModal(2)" class="text-xs font-semibold text-ink hover:text-brass transition-colors">Read Article →</button>
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 12 FINAL CTA -->
+        <section class="bg-ink text-white py-24 border-b border-neutral-800">
+            <div class="max-w-container mx-auto px-5 md:px-8 text-center space-y-6">
+                <span class="text-[12px] font-semibold tracking-[0.12em] text-brass uppercase font-heading">
+                    START WITH A REQUEST
+                </span>
+                <h2 class="text-[36px] sm:text-[48px] md:text-[56px] font-bold text-white tracking-tight leading-[1.05] font-heading">
+                    READY TO SOURCE FROM CHINA?
+                </h2>
+                <p class="text-neutral-300 text-lg max-w-xl mx-auto">
+                    Tell us what you're looking for. We'll take it from there.
+                </p>
+                <div class="pt-4">
+                    <button onclick="openRequestModal()" class="bg-white hover:bg-neutral-100 text-ink text-[15px] font-bold h-[54px] px-10 rounded-[3px] transition-all duration-200 inline-flex items-center justify-center">
+                        Start a Sourcing Request →
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 13 FOOTER -->
+    <footer class="bg-ink text-neutral-400 py-16 border-t border-neutral-800 text-sm">
+        <div class="max-w-container mx-auto px-5 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-neutral-800">
+                
+                <!-- Brand Column -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="#" class="font-heading text-2xl font-bold text-white tracking-tight block">
+                        SOURDEN
+                    </a>
+                    <p class="text-neutral-300 font-medium">China Sourcing. Done.</p>
+                    <p class="text-neutral-500 text-xs">Sourcing Without the Barriers.</p>
+                    <div class="pt-2 text-xs space-y-1 text-neutral-400">
+                        <p>Email: <a href="mailto:service@sourden.com" class="text-neutral-200 hover:text-brass">service@sourden.com</a></p>
+                        <p>WhatsApp: <a href="https://wa.me/8619861639802" target="_blank" class="text-neutral-200 hover:text-brass">+86 19861639802</a></p>
+                    </div>
+                </div>
+
+                <!-- Navigation Columns -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider font-heading">SERVICES</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#services" class="hover:text-white transition-colors">Product Sourcing</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Supplier Verification</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Purchasing & Order Mgmt</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Quality Control</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Shipping from China</a></li>
                     </ul>
                 </div>
 
-                <!-- Contact & Action -->
-                <div class="md:col-span-4 space-y-4">
-                    <h4 class="text-xs font-bold uppercase tracking-widest text-brand-gold">Direct Ground Operations</h4>
-                    <p class="text-xs text-gray-400">Need urgent supplier audit in Ningbo, Yiwu, or Shenzhen?</p>
-                    <button onclick="openSourcingModal()" class="w-full bg-brand-gold text-brand-dark font-bold text-xs py-3 rounded-lg hover:bg-white transition-colors">
-                        Submit Sourcing Spec Sheet
-                    </button>
-                    <div class="pt-2 flex items-center gap-4 text-xs text-gray-400">
-                        <a href="https://wa.me/8619861639802" target="_blank" class="hover:text-brand-gold flex items-center gap-1">
-                            <i data-lucide="message-square" class="w-4 h-4 text-emerald-500"></i> WhatsApp
-                        </a>
-                        <a href="mailto:service@sourden.com" class="hover:text-brand-gold flex items-center gap-1">
-                            <i data-lucide="mail" class="w-4 h-4"></i> Email Us
-                        </a>
-                    </div>
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider font-heading">INDUSTRIES</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#industries" class="hover:text-white transition-colors">Consumer Products</a></li>
+                        <li><a href="#industries" class="hover:text-white transition-colors">Beauty & Personal Care</a></li>
+                        <li><a href="#industries" class="hover:text-white transition-colors">Home & Living</a></li>
+                        <li><a href="#industries" class="hover:text-white transition-colors">Packaging</a></li>
+                        <li><a href="#industries" class="hover:text-white transition-colors">Electronics & Accessories</a></li>
+                        <li><a href="#industries" class="hover:text-white transition-colors">Industrial Products</a></li>
+                    </ul>
                 </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider font-heading">COMPANY</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#sourcing-barriers" class="hover:text-white transition-colors">About Sourden</a></li>
+                        <li><a href="#insights" class="hover:text-white transition-colors">Insights</a></li>
+                        <li><button onclick="openRequestModal()" class="text-brass hover:underline font-bold">Start Request →</button></li>
+                    </ul>
+                </div>
+
             </div>
 
-            <!-- Bottom Legal Bar -->
-            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-500 gap-4">
-                <p>&copy; 2026 SOURDEN Supply Chain Operations. All rights reserved.</p>
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-neutral-500 gap-4">
+                <p>© 2026 Sourden. All rights reserved.</p>
                 <div class="flex gap-6">
-                    <span>Privacy Policy</span>
-                    <span>Terms of Sourcing Service</span>
-                    <span>Legal NNN Framework</span>
+                    <a href="#" class="hover:text-neutral-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-neutral-400">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Application Logic -->
+    <!-- STICKY MOBILE CTA BAR -->
+    <div class="fixed bottom-0 left-0 right-0 bg-ink border-t border-neutral-800 p-3 z-30 lg:hidden flex items-center justify-between">
+        <div class="text-white text-xs font-heading font-medium pl-2">
+            China Sourcing. Done.
+        </div>
+        <button onclick="openRequestModal()" class="bg-brass text-ink font-bold text-xs h-[40px] px-4 rounded-[2px] hover:bg-yellow-600 transition-colors">
+            Start Request →
+        </button>
+    </div>
+
+    <!-- INTERACTIVE SOURCING REQUEST MODAL -->
+    <div id="request-modal" class="fixed inset-0 z-50 hidden overflow-y-auto modal-blur bg-ink/70 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl border border-stone shadow-2xl relative my-8 animate-fadeIn rounded-[2px] overflow-hidden">
+            
+            <!-- Modal Header -->
+            <div class="bg-ink text-white p-6 md:p-8 border-b border-neutral-800 flex justify-between items-start">
+                <div>
+                    <span class="text-xs font-mono text-brass uppercase">SOURDEN SOURCING REQUEST</span>
+                    <h3 class="text-2xl font-bold font-heading text-white mt-1">Tell us what you're looking for</h3>
+                    <p class="text-xs text-neutral-400 mt-1">We respond within 24 business hours. No obligations.</p>
+                </div>
+                <button onclick="closeRequestModal()" class="text-neutral-400 hover:text-white text-2xl font-bold leading-none p-1">×</button>
+            </div>
+
+            <!-- Modal Form -->
+            <form id="sourcing-form" onsubmit="handleFormSubmit(event)" class="p-6 md:p-8 space-y-6 text-ink">
+                
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-brass font-heading">YOUR DETAILS</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-ink mb-1">Name *</label>
+                            <input type="text" required class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-ink mb-1">Company</label>
+                            <input type="text" class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="Company Name">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-ink mb-1">Email *</label>
+                            <input type="email" required class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-ink mb-1">WhatsApp / Phone</label>
+                            <input type="text" class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="+1 234 567 8900">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-medium text-ink mb-1">Country *</label>
+                            <input type="text" required class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="United States, Canada, Australia, etc.">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4 pt-2 border-t border-stone">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-brass font-heading">SOURCING DETAILS</h4>
+                    <div>
+                        <label class="block text-xs font-medium text-ink mb-1">Product Name / Category *</label>
+                        <input id="form-product-input" type="text" required class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="e.g. Custom Packaging Boxes, Hair Extensions, LED Fixtures">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-ink mb-1">Detailed Requirements / Specifications *</label>
+                        <textarea required rows="3" class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="Describe materials, dimensions, customization needs, target price or quantity..."></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-ink mb-1">Estimated Quantity</label>
+                            <input type="text" class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="e.g. 500 pcs">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-ink mb-1">Target Price / Unit (Optional)</label>
+                            <input type="text" class="w-full border border-stone p-2.5 text-sm focus:border-ink outline-none" placeholder="e.g. $10 - $15 USD">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-4 border-t border-stone flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-[11px] text-secondaryText">Direct contact: <a href="mailto:service@sourden.com" class="underline">service@sourden.com</a></p>
+                    <button type="submit" class="w-full md:w-auto bg-ink hover:bg-neutral-800 text-white font-bold text-sm h-[48px] px-8 rounded-[2px] transition-colors">
+                        Submit Sourcing Request →
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Success Confirmation State (Hidden initially) -->
+            <div id="form-success-state" class="hidden p-8 text-center space-y-4">
+                <div class="w-12 h-12 bg-brass text-white rounded-full flex items-center justify-center mx-auto text-xl font-bold">✓</div>
+                <h3 class="text-2xl font-bold font-heading text-ink">Sourcing Request Received</h3>
+                <p class="text-secondaryText text-sm max-w-md mx-auto">
+                    Thank you. Our China sourcing team will review your requirements and get back to you at your provided email within 24 business hours.
+                </p>
+                <button onclick="closeRequestModal()" class="bg-ink text-white font-bold text-xs h-[40px] px-6 rounded-[2px] mt-4">Close Window</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ARTICLE MODAL -->
+    <div id="article-modal" class="fixed inset-0 z-50 hidden overflow-y-auto modal-blur bg-ink/70 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-3xl border border-stone shadow-2xl relative my-8 rounded-[2px] overflow-hidden">
+            <div class="bg-ivory p-6 md:p-8 border-b border-stone flex justify-between items-start">
+                <div>
+                    <span id="article-category" class="text-xs font-mono text-brass font-bold uppercase">CATEGORY</span>
+                    <h3 id="article-title" class="text-2xl md:text-3xl font-bold font-heading text-ink mt-1">Title</h3>
+                </div>
+                <button onclick="closeArticleModal()" class="text-ink hover:text-brass text-2xl font-bold leading-none p-1">×</button>
+            </div>
+            <div id="article-content" class="p-6 md:p-8 text-secondaryText text-sm md:text-base leading-relaxed space-y-4 max-h-[60vh] overflow-y-auto">
+                <!-- Article text inserted dynamically -->
+            </div>
+            <div class="p-6 bg-ivory border-t border-stone flex justify-between items-center">
+                <span class="text-xs text-secondaryText">Have a specific question?</span>
+                <button onclick="closeArticleModal(); openRequestModal();" class="bg-ink text-white text-xs font-bold h-[38px] px-5 rounded-[2px]">Start Sourcing Request</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Initialize Lucide Icons
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            handleInitialRoute();
-        });
-
-        // SPA Navigation Manager
-        function navigateTo(viewId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page-section');
-            pages.forEach(page => page.classList.remove('active'));
-
-            // Show selected view
-            const targetView = document.getElementById(`view-${viewId}`);
-            if (targetView) {
-                targetView.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        const servicesData = [
+            {
+                number: "01",
+                title: "Product Sourcing",
+                description: "Research and identify suitable suppliers based on your product requirements, specifications, target pricing and sourcing goals."
+            },
+            {
+                number: "02",
+                title: "Supplier Verification",
+                description: "Assess supplier capabilities, product fit, pricing, MOQ, lead times and other factors before you move forward."
+            },
+            {
+                number: "03",
+                title: "Purchasing & Order Management",
+                description: "Coordinate quotations, purchasing, supplier communication, production progress and order details."
+            },
+            {
+                number: "04",
+                title: "Quality Control",
+                description: "Arrange product checks before shipment to identify issues and confirm that the order matches the agreed requirements."
+            },
+            {
+                number: "05",
+                title: "Shipping from China",
+                description: "Coordinate shipping from China and connect the sourcing process with an appropriate logistics solution."
             }
+        ];
 
-            // Update Nav link highlights
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-            const activeNav = document.getElementById(`nav-${viewId}`);
-            if (activeNav) {
-                activeNav.classList.add('active');
+        const industriesData = [
+            {
+                number: "01",
+                name: "Consumer Products",
+                image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                number: "02",
+                name: "Beauty & Personal Care",
+                image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                number: "03",
+                name: "Home & Living",
+                image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                number: "04",
+                name: "Packaging",
+                image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                number: "05",
+                name: "Electronics & Accessories",
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                number: "06",
+                name: "Industrial Products",
+                image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80"
             }
+        ];
 
-            // Update URL Hash without reload
-            history.pushState(null, null, `#${viewId}`);
+        const articlesData = [
+            {
+                category: "SOURCING GUIDE",
+                title: "How to Find Reliable Suppliers in China",
+                content: `<p>Finding a reliable supplier in China requires a systematic approach beyond searching online platforms. Start by defining your exact product specifications, material requirements, and target price points.</p>
+                <p>Key steps include verifying supplier business licenses, inspecting real factory capabilities (rather than trading company showrooms), and evaluating their experience with buyers in your target market.</p>
+                <p>Always request production samples and establish clear standards for pre-shipment quality control before making significant deposit payments.</p>`
+            },
+            {
+                category: "SUPPLIER VERIFICATION",
+                title: "How to Verify a Chinese Supplier Before You Order",
+                content: `<p>Online supplier profiles can be deceptive. Verification involves several layers of practical checks: verifying business registration details, checking production facility size and employee counts, and auditing quality management systems.</p>
+                <p>Sourden conducts on-the-ground verification checks to confirm whether a supplier is an actual manufacturer or a third-party trader, ensuring transparency before orders are committed.</p>`
+            },
+            {
+                category: "SUPPLIER KNOWLEDGE",
+                title: "China Supplier vs. Trading Company: What's the Difference?",
+                content: `<p>Direct factories usually offer lower unit prices and custom manufacturing flexibility, but may require higher Minimum Order Quantities (MOQs) and have limited English communication skills.</p>
+                <p>Trading companies offer wider product catalogs and smaller orders, but add margin costs. Understanding which partner fits your current scale is crucial to cost-effective sourcing.</p>`
+            }
+        ];
+
+        function renderServices() {
+            const container = document.getElementById('services-container');
+            if (!container) return;
+            
+            container.innerHTML = servicesData.map(s => `
+                <div class="py-8 md:py-10 group hover:bg-ivory/50 transition-colors duration-200 px-2 md:px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
+                        <div class="md:col-span-1 font-mono text-sm font-bold text-brass">
+                            ${s.number}
+                        </div>
+                        <div class="md:col-span-4">
+                            <h3 class="text-xl md:text-2xl font-bold text-ink font-heading group-hover:text-brass transition-colors">
+                                ${s.title} →
+                            </h3>
+                        </div>
+                        <div class="md:col-span-7">
+                            <p class="text-secondaryText text-sm md:text-base leading-relaxed">
+                                ${s.description}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // Handle Hash on Load
-        function handleInitialRoute() {
-            const hash = window.location.hash.replace('#', '');
-            if (hash === 'sourcing-request') {
-                navigateTo('home');
-                openSourcingModal();
-            } else if (['services', 'industries', 'how-it-works', 'about', 'insights'].includes(hash)) {
-                navigateTo(hash);
-            } else {
-                navigateTo('home');
-            }
+        function renderIndustries() {
+            const grid = document.getElementById('industries-grid');
+            if (!grid) return;
+
+            grid.innerHTML = industriesData.map(ind => `
+                <div onclick="openRequestModal('${ind.name}')" class="group bg-ivory border border-stone p-4 cursor-pointer hover:border-ink transition-all duration-300 flex flex-col justify-between space-y-4">
+                    <div class="overflow-hidden aspect-[4/3] bg-stone/50 relative">
+                        <img src="${ind.image}" alt="${ind.name}" class="w-full h-full object-cover img-editorial" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E7E5DF/111315?text=${encodeURIComponent(ind.name)}';" />
+                        <span class="absolute top-2 left-2 bg-ink text-white font-mono text-[11px] px-2 py-0.5">
+                            ${ind.number}
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between pt-2">
+                        <h3 class="font-heading font-bold text-lg text-ink group-hover:text-brass transition-colors">
+                            ${ind.name}
+                        </h3>
+                        <span class="text-ink font-mono text-sm group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // Listen for browser back/forward
-        window.addEventListener('popstate', () => {
-            handleInitialRoute();
-        });
-
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Services Tab Switcher
-        function switchTab(section, tabId) {
-            // Hide all tab contents
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.add('hidden'));
-
-            // Deactivate all buttons
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // Show selected tab & active button
-            const selectedTab = document.getElementById(tabId);
-            if (selectedTab) {
-                selectedTab.classList.remove('hidden');
-            }
-            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-            }
-        }
-
-        // FAQ Accordion Toggle
-        function toggleFaq(faqId) {
-            const content = document.getElementById(faqId);
-            const icon = document.getElementById(`icon-${faqId}`);
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
+            const hamburger = document.getElementById('hamburger-icon');
+            const close = document.getElementById('close-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                hamburger.classList.add('hidden');
+                close.classList.remove('hidden');
             } else {
-                content.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
+                menu.classList.add('hidden');
+                hamburger.classList.remove('hidden');
+                close.classList.add('hidden');
             }
         }
 
-        // Sourcing Request Modal Functions
-        function openSourcingModal() {
-            const modal = document.getElementById('sourcing-modal');
+        function openRequestModal(productName = '') {
+            const modal = document.getElementById('request-modal');
+            const productInput = document.getElementById('form-product-input');
+            if (productName && productInput) {
+                productInput.value = productName;
+            }
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-            history.pushState(null, null, '#sourcing-request');
         }
 
-        function closeSourcingModal() {
-            const modal = document.getElementById('sourcing-modal');
+        function closeRequestModal() {
+            const modal = document.getElementById('request-modal');
             modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
             
-            // Reset status message
-            const status = document.getElementById('form-status');
-            status.classList.add('hidden');
-            status.className = 'hidden p-3 rounded-lg text-xs font-semibold';
+            // Reset form state
+            document.getElementById('sourcing-form').classList.remove('hidden');
+            document.getElementById('form-success-state').classList.add('hidden');
         }
 
-        // Form Submit Handler
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const status = document.getElementById('form-status');
-            
-            status.classList.remove('hidden');
-            status.className = 'p-3 rounded-lg text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300';
-            status.innerHTML = '✓ Sourcing inquiry submitted successfully. Our engineering manager will contact you within 24 hours at service@sourden.com.';
-
-            setTimeout(() => {
-                event.target.reset();
-                closeSourcingModal();
-            }, 3000);
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            // Simulate successful form submission
+            document.getElementById('sourcing-form').classList.add('hidden');
+            document.getElementById('form-success-state').classList.remove('hidden');
         }
+
+        function openArticleModal(index) {
+            const article = articlesData[index];
+            if (!article) return;
+            document.getElementById('article-category').innerText = article.category;
+            document.getElementById('article-title').innerText = article.title;
+            document.getElementById('article-content').innerHTML = article.content;
+            
+            document.getElementById('article-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticleModal() {
+            document.getElementById('article-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        window.onload = function() {
+            renderServices();
+            renderIndustries();
+        };
     </script>
 </body>
 </html>
