@@ -446,3 +446,18 @@ export default function App() {
     </div>
   );
 }
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+// ... 你的组件代码 ...
+
+// 在 App.jsx 文件最底部加上这几行：
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+}
