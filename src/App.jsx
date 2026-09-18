@@ -418,7 +418,7 @@ function Footer() {
 }
 
 // ==========================================
-// 3. 根应用入口组件 (Root Component)
+// 3. 根组件导出 (Export Component)
 // ==========================================
 export default function App() {
   return (
@@ -444,20 +444,5 @@ export default function App() {
         </a>
       </div>
     </div>
-  );
-}
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-// ... 你的组件代码 ...
-
-// 在 App.jsx 文件最底部加上这几行：
-const rootElement = document.getElementById('root');
-if (rootElement) {
-  ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
   );
 }
